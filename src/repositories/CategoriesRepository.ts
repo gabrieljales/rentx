@@ -1,11 +1,11 @@
 import { Category } from "../model/Category";
+import {
+    ICategoriesRepository,
+    ICreateCategoryDto,
+} from "./ICategoriesRepository";
 
-interface ICreateCategoryDto {
-    name: string;
-    description: string;
-}
-
-class CategoriesRepository {
+// CategoriesRepository é um sub-tipo da interface ICategoriesRepository (Liskov Substitution Principle - SOLID)
+class CategoriesRepository implements ICategoriesRepository {
     private categories: Category[];
 
     constructor() {
