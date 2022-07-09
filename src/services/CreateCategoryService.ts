@@ -1,4 +1,4 @@
-import { CategoriesRepository } from "../repositories/CategoriesRepository";
+import { ICategoriesRepository } from "../repositories/ICategoriesRepository";
 
 interface IRequest {
     name: string;
@@ -10,7 +10,7 @@ class CreateCategoryService {
     Invés do serviço ter essa dependência), vamos deixar essa responsabilidade para quem chamar o service.
     Se essa responsabilidade fosse do service, sempre teríamos uma instância diferente de uma categoria quando
     fossemos criar nos métodos */
-    constructor(private categoriesRepository: CategoriesRepository) {}
+    constructor(private categoriesRepository: ICategoriesRepository) {}
 
     execute({ description, name }: IRequest): void {
         const categoryAlreadyExists =
