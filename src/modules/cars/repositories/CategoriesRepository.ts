@@ -1,7 +1,7 @@
 import { Category } from "../model/Category";
 import {
     ICategoriesRepository,
-    ICreateCategoryDto,
+    ICreateCategoryDTO,
 } from "./ICategoriesRepository";
 
 // CategoriesRepository é um sub-tipo da interface ICategoriesRepository (Liskov Substitution Principle - SOLID)
@@ -12,7 +12,7 @@ class CategoriesRepository implements ICategoriesRepository {
         this.categories = [];
     }
 
-    create({ description, name }: ICreateCategoryDto): void {
+    create({ description, name }: ICreateCategoryDTO): void {
         const category = new Category();
 
         Object.assign(category, {
