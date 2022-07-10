@@ -1,11 +1,11 @@
-import { ICategoriesRepository } from "../repositories/ICategoriesRepository";
+import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IRequest {
     name: string;
     description: string;
 }
 
-class CreateCategoryService {
+class CreateCategoryUseCase {
     /* Aplicando o DIP (Dependency Inversion Principle) do princípio SOLID (categoriesRepository no constructor).
     Invés do serviço ter essa dependência), vamos deixar essa responsabilidade para quem chamar o service.
     Se essa responsabilidade fosse do service, sempre teríamos uma instância diferente de uma categoria quando
@@ -24,4 +24,4 @@ class CreateCategoryService {
     }
 }
 
-export { CreateCategoryService };
+export { CreateCategoryUseCase };
