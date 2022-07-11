@@ -8,8 +8,21 @@ import {
 class CategoriesRepository implements ICategoriesRepository {
   private categories: Category[];
 
-  constructor() {
+  // eslint-disable-next-line no-use-before-define
+  private static INSTANCE: CategoriesRepository;
+
+  private constructor() {
     this.categories = [];
+  }
+
+  // Responsável por criar uma instância ou repassar uma instância já existente para uma requisição (seguindo singleton)
+  public static getInstance(): CategoriesRepository {
+    if (!CategoriesRepository.INSTANCE) {
+      // Se não tiver uma instância
+      CategoriesRepository.INSTANCE = new CategoriesRepository();
+    }
+    // Se tiver uma instância
+    return CategoriesRepository.INSTANCE;
   }
 
   create({ description, name }: ICreateCategoryDTO): void {
