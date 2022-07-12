@@ -7,8 +7,20 @@ import {
 class SpecificationsRepository implements ISpecificationsRepository {
   private specifications: Specification[];
 
-  constructor() {
+  // eslint-disable-next-line no-use-before-define
+  private static INSTANCE: SpecificationsRepository;
+
+  private constructor() {
     this.specifications = [];
+  }
+
+  public static getInstance(): SpecificationsRepository {
+    if (!SpecificationsRepository.INSTANCE) {
+      // Se não tiver uma instância
+      SpecificationsRepository.INSTANCE = new SpecificationsRepository();
+    }
+    // Se tiver uma instância
+    return SpecificationsRepository.INSTANCE;
   }
 
   create({ description, name }: ICreateSpecificationDTO): void {
