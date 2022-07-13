@@ -23,7 +23,6 @@ class ImportCategoryUseCase {
 
       parseFile
         .on("data", async (line) => {
-          // ["name", "description"]
           const [name, description] = line; // Desestruturação
 
           categories.push({
@@ -32,6 +31,7 @@ class ImportCategoryUseCase {
           });
         })
         .on("end", () => {
+          fs.promises.unlink(file.path); // Removendo arquivo depois de pegar informações
           resolve(categories);
         })
         .on("error", (error) => {
