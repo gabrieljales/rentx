@@ -1,10 +1,31 @@
-version: '3.7'
+version: '3.9'
 
 services:
+  database_ignite:
+    image: postgres
+    container_name: database_ignite
+    restart: always
+    ports:
+      - $DB_HOST_PORT:5432
+    environment:
+      - POSTGRES_USER=$DB_USERNAME
+      - POSTGRES_PASSWORD=$DB_PASSWORD
+      - POSTGRES_DB=$DB_NAME
+      - POSTGRES_HOST=$DB_HOST
+    volumes:
+      - pgdata:/data/postgres
+    network_mode: host
+
   app:
     build: .
     container_name: rentx_ignite
     ports:
-      - 3000:3000
+      - $APP_PORT:$APP_PORT
     volumes:
       - .:/usr/app
+    network_mode: host
+    depends_on:
+      - database_ignite
+
+volumes:
+  pgdata:
