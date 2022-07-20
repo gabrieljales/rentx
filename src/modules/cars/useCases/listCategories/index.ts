@@ -3,7 +3,7 @@ import { ListCategoriesController } from "./ListCategoriesController";
 import { ListCategoriesUseCases } from "./ListCategoriesUseCases";
 
 // Instanciando o CategoriesRepository (singleton)
-const categoriesRepository = CategoriesRepository.getInstance();
+const categoriesRepository = null;
 
 const listCategoriesUseCase = new ListCategoriesUseCases(categoriesRepository);
 

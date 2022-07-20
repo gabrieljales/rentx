@@ -6,11 +6,11 @@ class CreateCategoryController {
   constructor(private createCategoryUseCase: CreateCategoryUseCase) {}
 
   // Importando os tipos (lá nas rotas não precisa pois o Router já "sabe")
-  handle(request: Request, response: Response): Response {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { name, description } = request.body;
 
     // SRP e DIP - SOLID
-    this.createCategoryUseCase.execute({ name, description });
+    await this.createCategoryUseCase.execute({ name, description });
 
     return response.status(201).send();
   }
