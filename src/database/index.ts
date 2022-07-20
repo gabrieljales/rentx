@@ -1,5 +1,8 @@
+import "reflect-metadata";
 import * as dotenv from "dotenv";
 import { DataSource } from "typeorm";
+
+import { Category } from "../modules/cars/entities/Category";
 
 dotenv.config();
 
@@ -12,6 +15,7 @@ const PostgresDataSource = new DataSource({
   database: process.env.DB_NAME,
   migrations: ["src/database/migrations/*.{js,ts}"],
   migrationsTableName: "migrations",
+  entities: [Category],
 });
 
 export { PostgresDataSource };
