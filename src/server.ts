@@ -1,8 +1,10 @@
+import "reflect-metadata";
 import * as dotenv from "dotenv";
 import express from "express";
 import swaggerUi from "swagger-ui-express";
 
 import { PostgresDataSource } from "./database";
+import "./shared/container";
 import { router } from "./routes";
 import swaggerFile from "./swagger.json";
 
