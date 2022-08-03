@@ -1,11 +1,9 @@
 import { Repository } from "typeorm";
 
 import { PostgresDataSource } from "../../../../database";
+import { ICreateCategoryDTO } from "../../dtos/ICreateCategoryDTO";
 import { Category } from "../../entities/Category";
-import {
-  ICategoriesRepository,
-  ICreateCategoryDTO,
-} from "../ICategoriesRepository";
+import { ICategoriesRepository } from "../ICategoriesRepository";
 
 // CategoriesRepository é um sub-tipo da interface ICategoriesRepository (Liskov Substitution Principle - SOLID)
 class CategoriesRepository implements ICategoriesRepository {
