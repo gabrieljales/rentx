@@ -2,6 +2,7 @@ import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 
+import { AppError } from "../../../../errors/AppError";
 import { UsersRepository } from "../../repositories/implementations/UsersRepository";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
@@ -30,18 +31,18 @@ class AuthenticateUserUseCase {
 
     if (!user) {
       // Invés de dizer "usuário não existe", é melhor dessa maneira (por segurança, evita fornecer informação sensível)
-      throw new Error("Email or password incorrect!");
+      throw new AppError("Email or password incorrect!");
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new Error("Email or password incorrect!");
+      throw new AppError("Email or password incorrect!");
     }
 
-    const token = sign({}, process.env.JWT_SECRET, {
+    const token = sign({}, `${process.env.JWT_SECRET}`, {
       subject: user.id,
-      expiresIn: process.env.JWT_TIME,
+      expiresIn: "1d",
     });
 
     const tokenReturn: IResponse = {
