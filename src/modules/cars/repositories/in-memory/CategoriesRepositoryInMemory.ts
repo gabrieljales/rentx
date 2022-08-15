@@ -1,7 +1,8 @@
 // Repositório utilizado para testar os casos de uso ("repositório fake")
 
+import { Category } from "@modules/cars/entities/Category";
+
 import { ICreateCategoryDTO } from "../../dtos/ICreateCategoryDTO";
-import { Category } from "../../entities/Category";
 import { ICategoriesRepository } from "../ICategoriesRepository";
 
 class CategoriesRepositoryInMemory implements ICategoriesRepository {
