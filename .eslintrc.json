@@ -64,7 +64,7 @@
         "newlinesBetween": "always",
         "groups": [
           "module",
-          "/^@shared/",
+          "/^@/", // Toda importação que começa com arroba, é uma importação da própria APP (fica abaixo das demais)
           [
             "parent",
             "sibling",
