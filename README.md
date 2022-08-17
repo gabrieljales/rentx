@@ -1,4 +1,4 @@
-# Rentalx
+# Rentx
 ## Sobre o projeto
 ### Cadastro de carro
 - **RF:**
