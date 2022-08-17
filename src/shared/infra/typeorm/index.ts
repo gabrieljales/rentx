@@ -12,9 +12,11 @@ const PostgresDataSource = new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  migrations: ["src/database/migrations/*.{js,ts}"],
+  migrations: [join(__dirname, "../typeorm/migrations/*.{js,ts}")],
   migrationsTableName: "migrations",
-  entities: [join(__dirname, "../modules/**/entities/*.{ts,js}")],
+  entities: [
+    join(__dirname, "../../../modules/**/infra/typeorm/entities/*.{ts,js}"),
+  ],
 });
 
 export { PostgresDataSource };
