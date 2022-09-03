@@ -17,7 +17,7 @@ dotenv.config();
 // Estabelecendo conexão com o banco
 PostgresDataSource.initialize()
   .then(() => {
-    console.log("Data Source has been initialized!");
+    console.log("Postgres Data Source has been initialized!");
   })
   .catch((err) => {
     console.error("Error during Data Source initialization:", err);
