@@ -71,3 +71,17 @@ A versão que usei nesse projeto foi a ^0.3.7, que teve muitas mudanças em rela
 
 ### Reverter a última migration:
     $ yarn typeorm migration:revert -d ./src/shared/infra/typeorm/index.ts
+
+## Criando uma nova feature do zero (básico):
+- Criar uma migration para gerar a tabela no banco;
+- Criar a entidade;
+- Iniciar o caso de uso juntamente com o seu arquivo de teste:
+  - Seguir o TDD (Escrever um teste que falhe, faça o teste passar e refatore); 
+  - Pensar o que o parâmetro .execute() precisa receber e criar uma interface (o nome padrão é IRequest);
+- Interação com o banco:
+  - Criar uma interface com os métodos desejados (para alguns métodos é interessante criar um DTO, como por exemplo os métodos de create);
+  - Criar um repositório in-memory para os testes, que implementa a interface;
+  - Criar o repositório que implementa a interface;
+- Criar o container (registerSingleton);
+- Criar o controller;
+- Criar rotas;
