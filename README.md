@@ -82,6 +82,6 @@ A versão que usei nesse projeto foi a ^0.3.7, que teve muitas mudanças em rela
   - Criar uma interface com os métodos desejados (para alguns métodos é interessante criar um DTO, como por exemplo os métodos de create);
   - Criar um repositório in-memory para os testes, que implementa a interface;
   - Criar o repositório que implementa a interface;
-- Criar o container (registerSingleton);
+- Criar o container (registerSingleton), injetar o repositório no useCase (com o @inject) e tornar o useCase injetável para o controller (com o @injectable);
 - Criar o controller;
 - Criar rotas;
