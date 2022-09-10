@@ -12,6 +12,8 @@ export class CreateSpecificationsCars1662682637122
     await queryRunner.createTable(
       new Table({
         name: "specifications_cars",
+
+        // Note que essa tabela não tem uma coluna de "ID". Se tivesse, teríamos que criar uma entidade, um repositório e etc. Motivo: A especificação por si só não faz sentido, mas sim quando fazemos um cadastro de um carro. Então podemos salvar dados em tabelas, sem que seja necessário criar uma entidade e repositório, podemos utilizar a própria entidade de carros (pois a especificação está mais atrelada ao carro)
         columns: [
           {
             name: "car_id",
