@@ -21,9 +21,7 @@
 
 ### Cadastro de especificações no carro
 - **RF:**
-  - Deve ser possível cadastrar possível cadastrar uma especificação para um carro.
-  - Deve ser possível listar todas as especificações.
-  - Deve ser possível listar todos os carros.
+  - Deve ser possível cadastrar uma especificação para um carro.
 
 - **RN:**
   - Não deve ser possível cadastrar uma especificação para um carro não cadastrado.
@@ -71,3 +69,17 @@ A versão que usei nesse projeto foi a ^0.3.7, que teve muitas mudanças em rela
 
 ### Reverter a última migration:
     $ yarn typeorm migration:revert -d ./src/shared/infra/typeorm/index.ts
+
+## Criando uma nova feature do zero (básico):
+- Criar uma migration para gerar a tabela no banco;
+- Criar a entidade;
+- Iniciar o caso de uso juntamente com o seu arquivo de teste:
+  - Seguir o TDD (Escrever um teste que falhe, faça o teste passar e refatore); 
+  - Pensar o que o parâmetro .execute() precisa receber e criar uma interface (o nome padrão é IRequest);
+- Interação com o banco:
+  - Criar uma interface com os métodos desejados (para alguns métodos é interessante criar um DTO, como por exemplo os métodos de create);
+  - Criar um repositório in-memory para os testes, que implementa a interface;
+  - Criar o repositório que implementa a interface;
+- Criar o container (registerSingleton), injetar o repositório no useCase (com o @inject) e tornar o useCase injetável para o controller (com o @injectable);
+- Criar o controller;
+- Criar rotas;

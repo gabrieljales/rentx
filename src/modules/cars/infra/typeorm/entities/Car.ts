@@ -3,12 +3,15 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   PrimaryColumn,
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
 import { Category } from "./Category";
+import { Specification } from "./Specification";
 
 @Entity("cars")
 class Car {
@@ -43,12 +46,22 @@ class Car {
   @Column()
   category_id: string;
 
+  // Tabelas de relacionamentos -> ManyToMany
+  @ManyToMany(() => Specification)
+  @JoinTable({
+    name: "specifications_cars",
+    joinColumns: [{ name: "car_id" }], // Coluna da tabela que pertence a essa classe
+    inverseJoinColumns: [{ name: "specification_id" }], // A outra coluna
+  })
+  specifications: Specification[];
+
   @CreateDateColumn()
   created_at: Date;
 
   constructor() {
     if (!this.id) {
       this.id = uuidV4();
+      this.available = true;
     }
   }
 }
