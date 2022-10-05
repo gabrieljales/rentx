@@ -13,16 +13,17 @@ class RentalsRepository implements IRentalsRepository {
     this.repository = PostgresDataSource.getRepository(Rental);
   }
 
+  // end_date = null -> Aluguel em aberto
   async findOpenRentalByCar(car_id: string): Promise<Rental> {
     const rentalOpenByCar = await this.repository.findOne({
-      where: { car_id },
+      where: { car_id, end_date: null },
     });
 
     return rentalOpenByCar;
   }
   async findOpenRentalByUser(user_id: string): Promise<Rental> {
     const rentalOpenByUser = await this.repository.findOne({
-      where: { user_id },
+      where: { user_id, end_date: null },
     });
 
     return rentalOpenByUser;
