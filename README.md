@@ -61,6 +61,13 @@
   - Caso haja multa, deverá ser somado ao total do aluguel.
   - O usuário deve estar logado na aplicação.
 
+### Listagem de Alugueis para usuário
+**RF**
+- Deve ser possível realizar a busca de todos os alugueis para o usuário
+
+**RN**
+- O usuário deve estar logado na aplicação
+
 ## Legenda de requisitos
 - **Requisitos Funcionais (RF):** São as funcionalidades que a aplicação terá.
   - Exemplo: Usuário pode cadastrar uma categoria.
