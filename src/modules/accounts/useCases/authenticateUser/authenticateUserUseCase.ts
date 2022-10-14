@@ -3,6 +3,7 @@ import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
 import { AppError } from "@shared/errors/AppError";
 
 interface IRequest {
@@ -22,11 +23,14 @@ interface IResponse {
 class AuthenticateUserUseCase {
   constructor(
     @inject("UsersRepository")
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
+    @inject("UsersTokensRepository")
+    private usersTokensRepository: IUsersTokensRepository
   ) {}
 
   async execute({ email, password }: IRequest): Promise<IResponse> {
     const user = await this.usersRepository.findByEmail(email);
+    const jwt_expires_in = process.env.JWT_EXPIRES_IN;
 
     if (!user) {
       // Invés de dizer "usuário não existe", é melhor dessa maneira (por segurança, evita fornecer informação sensível)
@@ -41,7 +45,7 @@ class AuthenticateUserUseCase {
 
     const token = sign({}, `${process.env.JWT_SECRET}`, {
       subject: user.id,
-      expiresIn: "1d",
+      expiresIn: process.env.JWT_EXPIRES_IN,
     });
 
     const tokenReturn: IResponse = {
